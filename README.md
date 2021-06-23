@@ -71,6 +71,43 @@ ignored
 ![img](./inner.svg)
   
 
+
+## 知识点
+
+### 主要流程
+
+``` js
+
+export function compile(s: string): [Module, Error[], string] {
+    errors.clear()
+    //经过词法解析和语法解析
+    const tree = parse(lex(s))
+    console.log(`tree`)
+    console.log(tree)
+    bind(tree)
+    //判断类型
+    check(tree)
+    //将AST转成js
+    const js = emit(transform(tree.statements))
+    return [tree, Array.from(errors.values()), js]
+}
+```
+
+1、词法解析
+
+其作用是将一行行的源码拆解成一个个token。所 谓 ，指的是语法上不可能再分的、最小的单个字符或字符串。
+
+2、语法解析
+
+其作用是将上一步生成的token数据，根据语法规则 转为 AST。
+
+3、类型判断
+
+对声明的类型和变量真正的值类型进行判断，然后报错
+
+4、将通过的AST再转成js
+
+
 # mini-typescript
 A miniature model of the Typescript compiler, intended to teach the structure of the real Typescript compiler
 

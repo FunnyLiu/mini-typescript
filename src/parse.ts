@@ -1,5 +1,6 @@
 import { Lexer, Token, Node, Statement, Identifier, Expression, Module } from './types'
 import { error } from './error'
+//语法解析，其作用是将上一步生成的token数据，根据语法规则 转为 AST。
 export function parse(lexer: Lexer): Module {
     lexer.scan()
     return parseModule()
@@ -44,6 +45,8 @@ export function parse(lexer: Lexer): Module {
     function parseIdentifier(): Identifier {
         const pos = lexer.pos()
         let text = lexer.text()
+        console.log(`text:`)
+        console.log(text)
         if (!parseExpected(Token.Identifier)) {
             text = "(missing)"
         }

@@ -4,9 +4,11 @@ const keywords = {
     "var": Token.Var,
     "return": Token.Return,
 }
+//词法解析 ，其作用是将一行行的源码拆解成一个个token。所 谓 ，指的是语法上不可能再分的、最小的单个字符或字符串。
 export function lex(s: string): Lexer {
     let pos = 0
     let text = ""
+    //指定了一套内置Token
     let token = Token.BOF
     return {
         scan,

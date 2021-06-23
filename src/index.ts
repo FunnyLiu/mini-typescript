@@ -11,6 +11,7 @@ if (!args.length) {
 
 title(`Looking at: ${args[0]}\n`)
 const ts = fs.readFileSync(args[0], 'utf8')
+//编译ts文件
 const [_tree, errors, js] = compile(ts)
 
 

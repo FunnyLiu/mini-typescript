@@ -19,6 +19,7 @@ export function check(module: Module) {
                 if (!statement.typename) {
                     return i
                 }
+                //判断类型是否一致
                 const t = checkType(statement.typename)
                 if (t !== i)
                     error(statement.init.pos, `Cannot assign initialiser of type '${typeToString(i)}' to variable with declared type '${typeToString(t)}'.`)
